@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { BodyComponent } from './Components/body/body.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -24,7 +25,9 @@ import { FooterComponent } from './Components/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
