@@ -9,6 +9,8 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { BodyComponent } from './Components/body/body.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ErrorComponent } from './Components/error/error.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     NavBarComponent,
     BodyComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent
 
 
    
@@ -26,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
 
   ],
   providers: [],

@@ -9,8 +9,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td >1</td>
+      <tr *ngFor="let e of Employee">
+        <td >{{e.Name}}</td>
         <td>Mark</td>
         <td>Otto</td>
         <td>
