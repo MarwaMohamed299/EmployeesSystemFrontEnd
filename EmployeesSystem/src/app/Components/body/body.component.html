@@ -1,0 +1,116 @@
+<div class="container-fluid">
+<table class="table table-hover m-3">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">IsActivated</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>
+            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#addRecordModal">Add</button>
+            <button class="btn btn-success btn-md" data-toggle="modal" data-target="#editRecordModal">Edit</button>
+            <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteRecordModal">Delete</button>
+
+
+        </td>
+      </tr>
+    gggggggggggggggggggggggggggg
+    </tbody>
+  </table>
+
+
+  <!-- Add Record Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="addRecordModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Record</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            
+            <form>
+            <div class="form-group">
+              <label for="addRecordId">ID:</label>
+              <input type="text" class="form-control" id="addRecordId"  name="id" required>
+            </div>
+            <div class="form-group">
+              <label for="addRecordName">Name:</label>
+              <input type="text" class="form-control" id="addRecordName"  name="name" required>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="addRecordIsActivated" name="isActivated">
+                <label class="form-check-label" for="addRecordIsActivated">Is Activated</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Record</button>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Record Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="editRecordModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Record</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form >
+            <div class="form-group">
+              <label for="editRecordId">ID:</label>
+              <input type="text" class="form-control" id="editRecordId"  name="id" required readonly>
+            </div>
+            <div class="form-group">
+              <label for="editRecordName">Name:</label>
+              <input type="text" class="form-control" id="editRecordName" name="name" required>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="editRecordIsActivated"  name="isActivated">
+                <label class="form-check-label" for="editRecordIsActivated">Is Activated</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete Record Modal -->
+  <div class="modal" tabindex="-1" role="dialog" id="deleteRecordModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Record</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete the record with ID:  and Name: ?</p>
+          <button type="button" class="btn btn-danger" >Delete Record</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+</div>
+  
