@@ -1,33 +1,32 @@
 <div class="container">
+     <button  class="btn btn-primary  m-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">Add</button>
+
 <table class="table table-hover ">
     <thead>
       <tr>
         <th class="col-3">Id</th>
         <th class="col-3">Name</th>
-        <th class="col-3">IsActivated</th>
+        <th class="col-3">Is Activated</th>
         <th class="col-3">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let e of Employee">
-        <td >{{e.Name}}</td>
-        <td>Mark</td>
-        <td>Otto</td>
+      <tr *ngFor="let e of employees">
+        <td >{{e.employeeId}}</td>
+        <td>{{e.name}}</td>
+        <td>{{e.isActive}}</td>
         <td>
-            <button class="btn btn-primary  m-3" data-bs-toggle="modal" data-bs-target="#addRecordModal">Add</button>
-            <button  class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#editRecordModal">Edit</button>
-            <button  class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#DeleteRecoreModal">Delete</button>
+            <button class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#DeleteRecoreModal">Delete</button>
             
-
-
         </td>
       </tr>
     </tbody>
-  </table>
 
+  </table>
+<br><br>
 
   <!-- Add Record Modal -->
-<div class="modal" tabindex="-1" role="dialog" id="addRecordModal">
+  <div class="modal" tabindex="-1" role="dialog" id="addRecordModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,65 +35,26 @@
 
         </div>
         <div class="modal-body">
-            
-            <form>
+         
+          <form>
             <div class="form-group">
-              <label for="addRecordId">ID:</label>
-              <input type="text" class="form-control" id="addRecordId"  name="id" required>
-            </div>
-            <div class="form-group"><br>
               <label for="addRecordName">Name:</label>
-              <input type="text" class="form-control" id="addRecordName"  name="name" required>
-            </div>
-            <div class="form-group"><br>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="addRecordIsActivated" name="isActivated">
-                <label class="form-check-label" for="addRecordIsActivated">Is Activated</label><br>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Record</button>
-          </form>
+              <input type="text" [(ngModel)]="name" class="form-control" id="addRecordName" name="name" required>
+            </div><br>
+          
+          
+          
+            <button type="submit" class="btn  btn-primary  " (click)="Add()" [disabled]="!isNameValid()">Add Record</button>
+            <button type="button" class="btn btn-secondary m-3" data-bs-dismiss="modal">Close</button>
+
+          </form>       
+        </div>
       </div>
     </div>
   </div>
-</div>
-
- <!-- Edit Record Modal -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="editRecordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-              <label for="editRecordId">ID:</label>
-              <input type="text" class="form-control" id="editRecordId" name="id" required readonly>
-          </div>
-          <div class="form-group">
-              <label for="editRecordName">Name:</label>
-              <input type="text" class="form-control" id="editRecordName" name="name" required>
-          </div>
-          <div class="form-group">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="editRecordIsActivated" name="isActivated">
-                  <label class="form-check-label" for="editRecordIsActivated">Is Activated</label>
-              </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+  
   
   <!-- Delete Record Modal -->
 
@@ -109,7 +69,7 @@
             Are You Sure That You want to Delete this Employee?      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-danger">Yes</button>
+        <button type="button" class="btn btn-danger" (click)="delete(employeeId)">Yes</button>
       </div>
     </div>
   </div>

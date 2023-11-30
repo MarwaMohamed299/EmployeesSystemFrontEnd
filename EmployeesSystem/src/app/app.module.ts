@@ -10,12 +10,16 @@ import { BodyComponent } from './Components/body/body.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ErrorComponent } from './Components/error/error.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule  } from '@angular/router';
 
 
+let routes=[
+  {path:'body',component :BodyComponent},
+  {path:'**',component:ErrorComponent}
+]
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     NavBarComponent,
     BodyComponent,
@@ -30,7 +34,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule.forRoot(routes)
 
   ],
   providers: [],

@@ -20,16 +20,16 @@ export class EmployeeServiceService {
     return this.httpClient.get<EmployeeReadDto>(this.Base_URL+id);
   }
 
-  add(newEmployee: EmployeeAddDto): Observable<EmployeeReadDto> {
-    return this.httpClient.post<EmployeeReadDto>(this.Base_URL, newEmployee);
+  add(newEmployee: EmployeeAddDto): Observable<EmployeeAddDto> {
+    return this.httpClient.post<EmployeeAddDto>(this.Base_URL, newEmployee);
   }
 
-  edit(id: number, updateEmployee: EmployeeUpdateDto) {
-    return this.httpClient.put<EmployeeReadDto>(this.Base_URL+id, updateEmployee);
+  edit(id: number, updateEmployee: EmployeeUpdateDto): Observable<EmployeeReadDto> {
+    return this.httpClient.put<EmployeeReadDto>(`${this.Base_URL}/${id}`, updateEmployee);
   }
 
-  deleteProduct(id: number) {
-    return this.httpClient.delete(this.Base_URL+id);
+  delete(id: number, deletedEmployee: EmployeeUpdateDto) {
+    return this.httpClient.put<EmployeeUpdateDto>(this.Base_URL+id, deletedEmployee);
   }
 
 }
@@ -42,10 +42,10 @@ export interface EmployeeReadDto {
 }
 export interface EmployeeAddDto{
 
-    
-  
-  name: string;
   isActivated: boolean;
+  employeeId: number;
+  name: string;
+
 }
 export interface EmployeeUpdateDto{
 

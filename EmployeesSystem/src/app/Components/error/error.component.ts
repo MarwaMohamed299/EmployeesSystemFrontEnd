@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent {
+  constructor(private router: Router) {}
 
+  RedirectToHome() {
+    this.router.navigate(['/']);
+  }
 }
