@@ -9,79 +9,81 @@ import { EmployeeUpdateDto } from 'src/app/Services/employee-service.service';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent {
-  
-employees: any;
-name = "";
-isActivated = true;
-employeeId = 1;
-////GetAllEmployees in the table
-constructor(activatedRoute: ActivatedRoute, private employeeService: EmployeeServiceService) {
-  employeeService.GetAll().subscribe({
-    next: (data) => {
-      this.employees = data;
-    },
-    error: (error) => {
-      console.log(error);
-    }
-  });
-}
+  employees: any;
+  name = "";
+  isActivated = true;
+  employeeId = 1;
 
-////Adding Employees 
-
-
-isNameValid(): boolean {
-  return this.name !== "";
-}
-Add() {
-  if (this.isNameValid()) {
-    let newEmployee : EmployeeAddDto = {
-      name: this.name,
-      isActivated: this.isActivated,
-      employeeId: this.employeeId
-    };
-
-    this.employeeService.add(newEmployee).subscribe({
+  constructor(activatedRoute: ActivatedRoute, private employeeService: EmployeeServiceService) {
+    employeeService.GetAll().subscribe({
       next: (data) => {
-        this.employees.push(data);
+        this.employees = data;
       },
       error: (error) => {
         console.log(error);
       }
     });
-
-    this.employeeId++;
-    this.name = "";
-    this.isActivated = true;
   }
-}
 
+  isNameValid(): boolean {
+    return this.name !== "";
+  }
 
-///Soft Deleting For Employees
-
-delete(id: number) {
-  this.employeeService.getEmployeeById(id).subscribe({
-    next: (employee) => {
-      const deletedEmployee: EmployeeUpdateDto = {
-        employeeId: employee.employeeId,
-        name: employee.name,
-        isActivated: false
+  Add() {
+    if (this.isNameValid()) {
+      let newEmployee: EmployeeAddDto = {
+        name: this.name,
+        isActivated: this.isActivated,
+        employeeId: this.employeeId
       };
 
-      this.employeeService.edit(id, deletedEmployee).subscribe({
-        next: () => {
-          const index = this.employees.findIndex((e: any) => e.employeeId === id);
-          if (index !== -1) {
-            this.employees[index] = deletedEmployee;
-          }
+      this.employeeService.add(newEmployee).subscribe({
+        next: (data) => {
+          this.employees.push(data);
         },
         error: (error) => {
           console.log(error);
         }
       });
-    },
-    error: (error) => {
-      console.log(error);
+
+      this.employeeId++;
+      this.name = "";
+      this.isActivated = true;
     }
-  });
-}
-}
+  }
+
+  getEmployeeById(employeeId: number) {
+    this.employeeService.getEmployeeById(employeeId).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  delete(employeeId:number,name:string,isActivated:boolean)
+  {
+    let DeletedEmployee= {
+      name: this.name,
+      isActivated: false,
+      employeeId: this.employeeId
+    };
+    this.employeeService.softDelete(DeletedEmployee,employeeId).subscribe({
+    next:(data)=>{
+        console.log(data)
+    },
+    error:(error)=>{
+      console.log(error)
+    }}
+    );
+  }
+
+  
+
+
+
+  }
+
+

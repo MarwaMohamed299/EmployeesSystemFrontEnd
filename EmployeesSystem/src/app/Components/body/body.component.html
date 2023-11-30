@@ -16,7 +16,7 @@
         <td>{{e.name}}</td>
         <td>{{e.isActivated}}</td>
         <td>
-            <button class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#DeleteRecoreModal">Delete</button>
+            <button class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#DeleteRecoreModal"(click)="delete(e.employeeId,e.name,e.isActivated)">Delete</button>
             
         </td>
       </tr>
@@ -69,7 +69,7 @@
             Are You Sure That You want to Delete this Employee?      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary m-3" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" (click)="delete(employeeId)">Yes</button>
+        <button type="button" class="btn btn-danger"data-bs-dismiss="modal" >Yes</button>
       </div>
     </div>
   </div>

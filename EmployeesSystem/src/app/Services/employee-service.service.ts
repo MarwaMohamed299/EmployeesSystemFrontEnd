@@ -17,20 +17,19 @@ export class EmployeeServiceService {
   }
 
   getEmployeeById(id: number): Observable<EmployeeReadDto> {
-    return this.httpClient.get<EmployeeReadDto>(this.Base_URL+id);
+    return this.httpClient.get<EmployeeReadDto>(`${this.Base_URL}/${id}`);
   }
+  
 
   add(newEmployee: EmployeeAddDto): Observable<EmployeeAddDto> {
     return this.httpClient.post<EmployeeAddDto>(this.Base_URL, newEmployee);
   }
 
-  edit(id: number, updateEmployee: EmployeeUpdateDto): Observable<EmployeeReadDto> {
-    return this.httpClient.put<EmployeeReadDto>(`${this.Base_URL}/${id}`, updateEmployee);
+  softDelete( DeletedEmployee:EmployeeUpdateDto,employeeId:number): Observable<string> {
+    return this.httpClient.put<string>(`${this.Base_URL}/${employeeId}`, null); 
   }
 
-  delete(id: number, deletedEmployee: EmployeeUpdateDto) {
-    return this.httpClient.put<EmployeeUpdateDto>(this.Base_URL+id, deletedEmployee);
-  }
+
 
 }
 
