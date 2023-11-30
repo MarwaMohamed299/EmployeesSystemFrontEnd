@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeServiceService } from 'src/app/Services/employee-service.service';
 import { EmployeeAddDto } from 'src/app/Services/employee-service.service';
+import { EmployeeUpdateDto } from 'src/app/Services/employee-service.service';
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -55,24 +56,32 @@ Add() {
 }
 
 
-///Deleting Employees
+///Soft Deleting For Employees
 
 delete(id: number) {
-  // Soft delete by setting isActivated to false
-  const deletedEmployee = this.employees.find((employee: { employeeId: number; }) => employee.employeeId === id);
-  if (deletedEmployee) {
-    deletedEmployee.isActivated = false;
-    // Update the server
-    this.employeeService.edit(id, deletedEmployee).subscribe({
-      next: () => {
-        // Handle successful deletion
-        this.employees = this.employees.filter((employee: { employeeId: number; }) => employee.employeeId !== id);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });  
-}
-}
+  this.employeeService.getEmployeeById(id).subscribe({
+    next: (employee) => {
+      const deletedEmployee: EmployeeUpdateDto = {
+        employeeId: employee.employeeId,
+        name: employee.name,
+        isActivated: false
+      };
 
+      this.employeeService.edit(id, deletedEmployee).subscribe({
+        next: () => {
+          const index = this.employees.findIndex((e: any) => e.employeeId === id);
+          if (index !== -1) {
+            this.employees[index] = deletedEmployee;
+          }
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+}
 }
