@@ -14,7 +14,7 @@ import { RouterModule  } from '@angular/router';
 
 
 let routes=[
-  {path:'body',component :BodyComponent},
+  {path:'',component :BodyComponent},
   {path:'**',component:ErrorComponent}
 ]
 

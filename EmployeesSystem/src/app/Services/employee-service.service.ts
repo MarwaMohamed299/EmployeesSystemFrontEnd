@@ -26,7 +26,7 @@ export class EmployeeServiceService {
   }
 
   softDelete( DeletedEmployee:EmployeeUpdateDto,employeeId:number): Observable<string> {
-    return this.httpClient.put<string>(`${this.Base_URL}/${employeeId}`, null); 
+    return this.httpClient.put<string>(`${this.Base_URL}/${employeeId}`, employeeId); 
   }
 
 
